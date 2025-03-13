@@ -15,11 +15,11 @@ jobs:
       - name: Sync from upstream
         run: |
           git clone https://github.com/home-assistant/version.git
+          cd version
 
 
       - name: Replace image registry
         run: |
-          cd verion
           find . -type f -name "*.json" -exec sed -i 's|ghcr.io|ghcr.nju.edu.cn|g' {} +
           mv * ../
           rm -rf version
