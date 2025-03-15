@@ -14,12 +14,13 @@ jobs:
 
       - name: Sync from upstream
         run: |
-          git clone https://github.com/home-assistant/version.git
+          git clone https://github.com/home-assistant/version.git 
           cd version
 
       - name: Replace image registry
         run: |
-          cp -a *.* ../
+          cp -a *.* ../*
+          rm -rf version
 
       - name: Commit and push changes
         run: |
