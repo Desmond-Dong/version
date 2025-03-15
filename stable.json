@@ -75,7 +75,7 @@
   },
   "images": {
     "core": "ghcr.nju.edu.cn/home-assistant/{machine}-homeassistant",
-    "supervisor": "ghcr.nju.edu.cn/ha-china"/{arch}-hassio-supervisor",
+    "supervisor": "ghcr.nju.edu.cn/home-assistant/{arch}-hassio-supervisor",
     "cli": "ghcr.nju.edu.cn/home-assistant/{arch}-hassio-cli",
     "audio": "ghcr.nju.edu.cn/home-assistant/{arch}-hassio-audio",
     "dns": "ghcr.nju.edu.cn/home-assistant/{arch}-hassio-dns",
