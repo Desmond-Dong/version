@@ -21,6 +21,7 @@ jobs:
         run: |
           find . -type f \( -name "*.json" -o -name "*.txt" \) -exec sed -i \
           -e 's|ghcr.io|ghcr.nju.edu.cn|g' \
+          -e 's|home-assistant/${arch}-hassio-supervisor|ha-china/${arch}-hassio-supervisor|g' \
           -e 's|home-assistant/{arch}-hassio-supervisor|ha-china/{arch}-hassio-supervisor|g' {} +
 
           rsync -av --progress --exclude='.*' . ../
