@@ -19,17 +19,13 @@ jobs:
 
       - name: Replace image registry
         run: |
-          find . -type f -name "*.json" -exec sed -i 's|ghcr.io|ghcr.nju.edu.cn|g' {} +
-          find . -maxdepth 1 -type f -exec cp {} ../ \;
-          rm -rf version
+          cp -a * ../
 
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git status
-          git ls-files --others --exclude-standard
-          git add -A
+          git add .
           git commit -m "Sync file automatically at $(date +'%Y-%m-%d %H:%M:%S')"
           git push
 
