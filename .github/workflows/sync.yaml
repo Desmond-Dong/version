@@ -19,7 +19,7 @@ jobs:
 
       - name: Replace image registry
         run: |
-          cp -a *.* ../*
+          cp -rf *.* ../*
           rm -rf version
 
       - name: Commit and push changes
