@@ -1,0 +1,38 @@
+name: Sync from upstream
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  
+  workflow_dispatch: 
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout this repo
+        uses: actions/checkout@v4
+
+      - name: Sync from upstream
+        run: |
+           git clone https://github.com/home-assistant/version.git 
+           rm -rf version/.git*
+
+      - name: Replace image registry
+        run: |
+          find ./version -type f \( -name "*.json" -o -name "*.txt" \) -exec sed -i \
+          -e 's|ghcr.io|ghcr.nju.edu.cn|g' \
+          -e 's|home-assistant/${arch}-hassio-supervisor|ha-china/${arch}-hassio-supervisor|g' \
+          -e 's|home-assistant/{arch}-hassio-supervisor|ha-china/{arch}-hassio-supervisor|g' {} +
+          pwd
+          ls -lh
+          cp -a version/* ./
+          rm -rf version
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit --amend --no-edit -m "Sync file automatically at $(date +'%Y-%m-%d %H:%M:%S')"
+          git push --force
+
